@@ -1,4 +1,33 @@
 ---
-- name: "Mock task"
-  ansible.builtin.debug:
-    msg: "hello, world!"
+- name: "Ensure that ufw is installed"
+  ansible.builtin.apt:
+    name: ufw
+    update_cache: true
+
+- name: "Deny incoming connections"
+  notify: Reload-ufw
+  community.general.ufw:
+    direction: incoming
+    proto: any
+    policy: deny
+
+- name: "Allow outgoing connections"
+  notify: Reload-ufw
+  community.general.ufw:
+    direction: outgoing
+    proto: any
+    policy: allow
+
+- name: "Allow rate-limited SSH access"
+  notify: Reload-ufw
+  community.general.ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name: "Enable the ufw service"
+  community.general.ufw:
+    state: enabled
+
+- name: "Flush handlers"
+  ansible.builtin.meta: flush_handlers

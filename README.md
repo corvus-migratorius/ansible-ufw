@@ -1,7 +1,7 @@
 template
 =========
 
-Template for Ansible role monorepos
+Whitelist network ports with UFW
 
 Requirements
 ------------
@@ -23,7 +23,7 @@ Example Playbook
 
 ```yaml
 roles:
-    - role: genlab.template
+    - role: genlab.ufw
 ```
 
 License
