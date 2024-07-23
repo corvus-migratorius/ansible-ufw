@@ -1,0 +1,5 @@
+ansible
+molecule
+molecule-plugins[docker]
+docker
+requests==2.31.0  # pinned to the latest version not breaking Docker SDK

@@ -1,0 +1,11 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  any_errors_fatal: true
+
+  tasks:
+    - name: "Mock verification task"
+      changed_when: false
+      ansible.builtin.command:
+        cmd: "true"
