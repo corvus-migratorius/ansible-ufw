@@ -5,7 +5,24 @@
   any_errors_fatal: true
 
   tasks:
-    - name: "Mock verification task"
+    - name: "Get the UFW status"
+      register: ufw_status
       changed_when: false
       ansible.builtin.command:
-        cmd: "true"
+        cmd: ufw status
+
+    - name: "Verify expected UFW status"
+      vars:
+        expected:
+          - "Status: active"
+          - ""
+          - "To                         Action      From"
+          - "--                         ------      ----"
+          - "22/tcp                     LIMIT       Anywhere                  "
+          - "443/tcp                    ALLOW       Anywhere                  "
+          - "80/tcp                     ALLOW       Anywhere                  "
+          - "22/tcp (v6)                LIMIT       Anywhere (v6)             "
+          - "443/tcp (v6)               ALLOW       Anywhere (v6)             "
+          - "80/tcp (v6)                ALLOW       Anywhere (v6)             "
+      ansible.builtin.assert:
+        that: ufw_status.stdout_lines == expected
