@@ -4,3 +4,4 @@
   roles:
     - role: genlab.ufw
       rules_file: ufw-rules.yml
+      disable_ipv6: true
