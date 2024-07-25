@@ -4,6 +4,13 @@
     name: ufw
     update_cache: true
 
+- name: "Disable IPv6"
+  when: (disable_ipv6 is defined) and (disable_ipv6 is true)
+  ansible.builtin.lineinfile:
+    path: /etc/default/ufw
+    regexp: ^IPV6
+    line: IPV6=no
+
 - name: "Deny incoming connections"
   notify: Reload-ufw
   community.general.ufw:
@@ -37,13 +44,6 @@
     port: "{{ item.port }}"
     proto: "{{ item.proto | default('tcp') }}"
     src: "{{ item.src | default('any') }}"
-
-- name: "Disable IPv6"
-  when: (disable_ipv6 is defined) and (disable_ipv6 is true)
-  ansible.builtin.lineinfile:
-    path: /etc/default/ufw
-    regexp: ^IPV6
-    line: IPV6=no
 
 - name: "Enable the ufw service"
   community.general.ufw:
