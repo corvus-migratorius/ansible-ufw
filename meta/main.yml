@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: "ufw"
+  role_name: ufw
   namespace: genlab
   author: "Alexander Gorelyshev"
   company: "Genlab, LLC"

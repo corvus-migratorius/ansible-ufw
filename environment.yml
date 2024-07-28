@@ -1,0 +1,10 @@
+---
+name: ansible-ufw
+channels:
+  - conda-forge
+dependencies:
+  - python~=3.12
+  - pip>=22.2
+  - pip:
+      - -r requirements.txt
+      - -r requirements.ci.txt
