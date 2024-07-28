@@ -1,10 +1,11 @@
 ---
 name: molecule
-'on':
+  
+on:
   pull_request:
+    branches: [ "master" ]
   push:
-    branches:
-      - master
+    branches: [ "master" ]
 
 jobs:
 
@@ -19,19 +20,18 @@ jobs:
           - ubuntu2004
 
     steps:
-      - name: Check out the codebase.
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python 3.
-        uses: actions/setup-python@v5
+      - uses: mamba-org/setup-micromamba@v1
         with:
-          python-version: '3.x'
+          micromamba-version: '1.5.8-0'
+          environment-file: environment.ci.yml
+          init-shell: bash
+          post-cleanup: 'all'
 
-      - name: Install test dependencies.
-        run: pip3 install -r requirements.ci.txt
-
-      - name: Run Molecule tests.
+      - name: Run Molecule tests
         run: molecule test
+        shell: micromamba-shell {0}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
