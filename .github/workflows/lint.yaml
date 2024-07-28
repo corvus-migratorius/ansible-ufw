@@ -14,7 +14,6 @@
       timeout-minutes: 10
   
       steps:
-  
         - uses: actions/checkout@v4
   
         - uses: mamba-org/setup-micromamba@v1
@@ -29,6 +28,5 @@
             yamllint
             environment.yml
             environment.ci.yml
-            requirements.yml
             ufw-rules.yml
           shell: micromamba-shell {0}
