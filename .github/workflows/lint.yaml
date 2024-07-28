@@ -28,5 +28,5 @@
             yamllint
             environment.yml
             environment.ci.yml
-            ufw-rules.yml
+            molecule/default/ufw-rules.yml
           shell: micromamba-shell {0}
