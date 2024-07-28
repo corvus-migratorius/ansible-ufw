@@ -7,3 +7,4 @@ dependencies:
   - pip>=22.2
   - pip:
       - -r requirements.txt
+      - -r requirements.ci.txt

@@ -1,38 +1,42 @@
 ---
-name: molecule
-'on':
-  pull_request:
-  push:
-    branches:
-      - master
-
-jobs:
-
-  molecule:
-    name: molecule
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        distro:
-          - ubuntu2204
-          - ubuntu2004
-
-    steps:
-      - name: Check out the codebase.
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install test dependencies.
-        run: pip3 install -r requirements.ci.txt
-
-      - name: Run Molecule tests.
-        run: molecule test
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.distro }}
+  name: ansible-lint
+  
+  on:
+    pull_request:
+      branches: [ "master" ]
+    push:
+      branches: [ "master" ]
+  
+  jobs:
+  
+    ansible-lint:
+      runs-on: ubuntu-latest
+      timeout-minutes: 10
+  
+      steps:
+  
+        - uses: actions/checkout@v4
+  
+        - uses: mamba-org/setup-micromamba@v1
+          with:
+            micromamba-version: '1.5.8-0'
+            environment-file: environment.ci.yml
+            init-shell: bash
+            post-cleanup: 'all'
+  
+        - name: Check meta files with YAMLLint
+          run: >
+            yamllint
+            environment.yml
+            environment.ci.yml
+            requirements.yml
+            ufw-rules.yml
+          shell: micromamba-shell {0}
+  
+        # - name: Install external roles
+        #   run: ansible-galaxy install -r requirements.yml
+        #   shell: micromamba-shell {0}
+  
+        - name: Lint with Ansible Lint
+          run: ansible-lint -v -c .ansible-lint
+          shell: micromamba-shell {0}
