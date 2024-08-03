@@ -1,7 +1,14 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    custom_rules:
+      - rule: allow
+        port: 443
+      - rule: allow
+        port: 80
+
   roles:
     - role: genlab.ufw
-      rules_file: ufw-rules.yml
       disable_ipv6: true
+      rules: "{{ custom_rules }}"

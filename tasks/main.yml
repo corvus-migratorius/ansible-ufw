@@ -32,10 +32,6 @@
     port: ssh
     proto: tcp
 
-- name: "Read firewall rules from a YAML file"
-  ansible.builtin.include_vars:
-    file: "{{ rules_file }}"
-
 - name: "Set whitelist rules"
   notify: Reload-ufw
   loop: "{{ rules }}"
