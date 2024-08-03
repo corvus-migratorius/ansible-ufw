@@ -1,7 +1,0 @@
----
-rules:
-  - rule: allow
-    port: 443
-
-  - rule: allow
-    port: 80

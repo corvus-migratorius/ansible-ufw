@@ -32,21 +32,14 @@
     port: ssh
     proto: tcp
 
-- name: "Install additional firewall rules"
-  when: (rules_file is defined) and (rules_file != "")
-  block:
-    - name: "Read firewall rules from a YAML file"
-      ansible.builtin.include_vars:
-        file: "{{ rules_file }}"
-
-    - name: "Set whitelist rules"
-      notify: Reload-ufw
-      loop: "{{ rules }}"
-      community.general.ufw:
-        rule: "{{ item.rule }}"
-        port: "{{ item.port }}"
-        proto: "{{ item.proto | default('tcp') }}"
-        src: "{{ item.src | default('any') }}"
+- name: "Set whitelist rules"
+  notify: Reload-ufw
+  loop: "{{ rules }}"
+  community.general.ufw:
+    rule: "{{ item.rule }}"
+    port: "{{ item.port }}"
+    proto: "{{ item.proto | default('tcp') }}"
+    src: "{{ item.src | default('any') }}"
 
 - name: "Enable the ufw service"
   community.general.ufw:
