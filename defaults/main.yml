@@ -1,3 +1,4 @@
 ---
 rules: []
 limit_ssh: false
+openssh_port: 22
