@@ -25,11 +25,11 @@
     proto: any
     policy: allow
 
-- name: "Allow rate-limited SSH access"
+- name: "Allow SSH access"
   notify: Reload-ufw
   community.general.ufw:
-    rule: limit
     port: ssh
+    rule: "{{ limit_ssh | ternary('limit', 'allow') }}"
     proto: tcp
 
 - name: "Set whitelist rules"

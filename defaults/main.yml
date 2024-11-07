@@ -1,2 +1,3 @@
 ---
 rules: []
+limit_ssh: false
