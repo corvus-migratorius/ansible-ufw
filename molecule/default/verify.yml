@@ -21,6 +21,8 @@
           - "22/tcp                     LIMIT       Anywhere                  "
           - "443/tcp                    ALLOW       Anywhere                  "
           - "80/tcp                     ALLOW       Anywhere                  "
+          - "9080/tcp                   ALLOW       10.2.1.0/24               "
+          - "9100/tcp                   ALLOW       10.2.1.0/24               "
       ansible.builtin.assert:
         that: ufw_status.stdout_lines == expected
         success_msg: "UFW has the expected state"

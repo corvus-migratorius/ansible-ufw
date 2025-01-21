@@ -25,16 +25,12 @@
     proto: any
     policy: allow
 
-- name: "Allow rate-limited SSH access"
+- name: "Allow SSH access"
   notify: Reload-ufw
   community.general.ufw:
-    rule: limit
-    port: ssh
+    rule: "{{ limit_ssh | ternary('limit', 'allow') }}"
+    port: "{{ openssh_port }}"
     proto: tcp
-
-- name: "Read firewall rules from a YAML file"
-  ansible.builtin.include_vars:
-    file: "{{ rules_file }}"
 
 - name: "Set whitelist rules"
   notify: Reload-ufw
