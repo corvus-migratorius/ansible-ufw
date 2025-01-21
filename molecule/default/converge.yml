@@ -17,4 +17,5 @@
   roles:
     - role: genlab.ufw
       disable_ipv6: true
+      limit_ssh: true
       rules: "{{ custom_rules }}"
