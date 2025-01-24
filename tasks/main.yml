@@ -40,6 +40,7 @@
     port: "{{ item.port }}"
     proto: "{{ item.proto | default('tcp') }}"
     src: "{{ item.src | default('any') }}"
+    interface: "{{ item.iface | default(omit)"
 
 - name: "Enable the ufw service"
   community.general.ufw:
