@@ -38,7 +38,7 @@
   community.general.ufw:
     rule: "{{ item.rule }}"
     port: "{{ item.port | default(omit) }}"
-    proto: "{{ item.proto | default('tcp') }}"
+    proto: "{{ item.proto | default('any') }}"
     src: "{{ item.src | default('any') }}"
     dest: "{{ item.dest | default(omit) }}"
     interface: "{{ item.interface | default(omit) }}"
