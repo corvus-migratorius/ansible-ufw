@@ -42,6 +42,7 @@
     src: "{{ item.src | default('any') }}"
     interface: "{{ item.iface | default(omit) }}"
     direction: "{{ item.direction | default(omit) }}"
+    route: "{{ item.route | default(false) }}"
 
 - name: "Enable the ufw service"
   community.general.ufw:
