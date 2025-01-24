@@ -40,6 +40,7 @@
     port: "{{ item.port }}"
     proto: "{{ item.proto | default('tcp') }}"
     src: "{{ item.src | default('any') }}"
+    dest: "{{ item.destination | default(omit) }}"
     interface: "{{ item.iface | default(omit) }}"
     direction: "{{ item.direction | default(omit) }}"
     route: "{{ item.route | default(false) }}"
