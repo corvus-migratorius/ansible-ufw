@@ -37,9 +37,13 @@
   loop: "{{ rules }}"
   community.general.ufw:
     rule: "{{ item.rule }}"
-    port: "{{ item.port }}"
-    proto: "{{ item.proto | default('tcp') }}"
+    port: "{{ item.port | default(omit) }}"
+    proto: "{{ item.proto | default('any') }}"
     src: "{{ item.src | default('any') }}"
+    dest: "{{ item.dest | default(omit) }}"
+    interface: "{{ item.interface | default(omit) }}"
+    direction: "{{ item.direction | default(omit) }}"
+    route: "{{ item.route | default(false) }}"
 
 - name: "Enable the ufw service"
   community.general.ufw:

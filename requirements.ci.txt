@@ -1,6 +1,6 @@
 ansible-lint
-molecule
+molecule~=24.12.0
 molecule-plugins[docker]
-docker
+docker==7.1.0
 requests==2.31.0  # pinned to the latest version not breaking Docker SDK
 yamllint

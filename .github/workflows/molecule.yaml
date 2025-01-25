@@ -16,13 +16,14 @@ jobs:
     strategy:
       matrix:
         distro:
+          - ubuntu2404
           - ubuntu2204
           - ubuntu2004
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: mamba-org/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@0dea6379afdaffa5d528b3d1dabc45da37f443fc
         with:
           micromamba-version: '1.5.8-0'
           environment-file: environment.ci.yml

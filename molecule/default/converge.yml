@@ -13,6 +13,9 @@
       - rule: allow
         port: 9100
         src: "10.2.1.0/24"
+      - rule: allow
+        interface: eth0@if288
+        direction: in
 
   roles:
     - role: genlab.ufw
