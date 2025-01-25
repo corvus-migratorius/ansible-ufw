@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         distro:
+          - ubuntu2404
           - ubuntu2204
           - ubuntu2004
 
