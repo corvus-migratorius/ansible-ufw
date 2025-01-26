@@ -19,10 +19,8 @@
           - "To                         Action      From"
           - "--                         ------      ----"
           - "22/tcp                     LIMIT       Anywhere                  "
-          - "443                        ALLOW       Anywhere                  "
           - "80                         ALLOW       Anywhere                  "
           - "9080                       ALLOW       10.2.1.0/24               "
-          - "9100                       ALLOW       10.2.1.0/24               "
           - "Anywhere on eth0@if288     ALLOW       Anywhere                  "
       ansible.builtin.assert:
         that: ufw_status.stdout_lines == expected
