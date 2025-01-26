@@ -11,6 +11,7 @@
       - rule: allow
         interface: eth0@if288
         direction: in
+        comment: "Allow all incoming traffic on eth0@if288"
 
   roles:
     - role: genlab.ufw
