@@ -37,6 +37,7 @@
   loop: "{{ rules }}"
   community.general.ufw:
     rule: "{{ item.rule }}"
+    comment: "{{ item.comment | default(omit) }}"
     port: "{{ item.port | default(omit) }}"
     proto: "{{ item.proto | default('any') }}"
     src: "{{ item.src | default('any') }}"
