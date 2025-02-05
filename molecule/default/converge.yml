@@ -3,13 +3,10 @@
   hosts: all
   vars:
     custom_rules:
-      - rule: allow
-        port: 80
-      - rule: allow
-        port: 9080
+      - port: 80
+      - port: 9080
         src: "10.2.1.0/24"
-      - rule: allow
-        interface: eth0@if288
+      - interface: eth0@if288
         direction: in
         comment: "Allow all incoming traffic on eth0@if288"
 
