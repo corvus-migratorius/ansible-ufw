@@ -36,7 +36,7 @@
   notify: Reload-ufw
   loop: "{{ rules }}"
   community.general.ufw:
-    rule: "{{ item.rule }}"
+    rule: "{{ item.rule | default('allow') }}"
     comment: "{{ item.comment | default(omit) }}"
     port: "{{ item.port | default(omit) }}"
     proto: "{{ item.proto | default('any') }}"
