@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: mamba-org/setup-micromamba@0dea6379afdaffa5d528b3d1dabc45da37f443fc
+      - uses: mamba-org/setup-micromamba@29d0a406a44cd30f78c79aa44683acbf49ebc6b4
         with:
           micromamba-version: '1.5.8-0'
           environment-file: environment.ci.yml
